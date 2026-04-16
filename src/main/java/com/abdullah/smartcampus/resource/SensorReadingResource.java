@@ -12,6 +12,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import com.abdullah.smartcampus.exception.SensorUnavailableException;
 
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
@@ -53,11 +54,8 @@ public class SensorReadingResource {
         }
 
         if ("MAINTENANCE".equalsIgnoreCase(sensor.getStatus())) {
-            return Response.status(Response.Status.FORBIDDEN)
-                    .entity("Sensor is in maintenance mode and cannot accept readings.")
-                    .build();
+            throw new SensorUnavailableException("Sensor is in maintenance mode and cannot accept readings.");
         }
-
         if (reading == null || reading.getId() == null || reading.getId().trim().isEmpty()) {
             return Response.status(Response.Status.BAD_REQUEST)
                     .entity("Reading ID is required.")

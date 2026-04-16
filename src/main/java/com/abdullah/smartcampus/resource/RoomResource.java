@@ -15,6 +15,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import com.abdullah.smartcampus.exception.RoomNotEmptyException;
 
 @Path("/rooms")
 @Produces(MediaType.APPLICATION_JSON)
@@ -78,9 +79,7 @@ public class RoomResource {
         }
 
         if (room.getSensorIds() != null && !room.getSensorIds().isEmpty()) {
-            return Response.status(Response.Status.CONFLICT)
-                    .entity("Room cannot be deleted because it still has assigned sensors.")
-                    .build();
+    throw new RoomNotEmptyException("Room cannot be deleted because it still has assigned sensors.");
         }
 
         DataStore.rooms.remove(roomId);

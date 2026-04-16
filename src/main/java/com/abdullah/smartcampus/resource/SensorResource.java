@@ -15,6 +15,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.PathParam;
+import com.abdullah.smartcampus.exception.LinkedResourceNotFoundException;
 
 @Path("/sensors")
 @Produces(MediaType.APPLICATION_JSON)
@@ -63,9 +64,7 @@ public class SensorResource {
         Room room = DataStore.rooms.get(sensor.getRoomId());
 
         if (room == null) {
-            return Response.status(Response.Status.BAD_REQUEST)
-                    .entity("The specified room does not exist.")
-                    .build();
+            throw new LinkedResourceNotFoundException("The specified room does not exist.");
         }
 
         if (sensor.getStatus() == null || sensor.getStatus().trim().isEmpty()) {
