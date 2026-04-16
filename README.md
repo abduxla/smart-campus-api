@@ -1,4 +1,3 @@
-````markdown
 # Smart Campus Sensor & Room Management API
 
 ## Module Information
@@ -72,7 +71,7 @@ Seeded rooms:
 ### Using Maven
 ```bash
 mvn clean install
-````
+```
 
 ## How to Run the Server
 
