@@ -273,10 +273,6 @@ Using a query parameter such as `/sensors?type=CO2` is generally better for filt
 
 The sub-resource locator pattern keeps complex APIs cleaner by splitting nested logic into dedicated classes. Instead of placing every nested path and reading-related method inside one large `SensorResource` class, the API delegates reading history behavior to `SensorReadingResource`. This improves readability, makes the code easier to maintain, and keeps responsibilities separated. It also scales better when an API grows and gains more deeply nested features.
 
-### 2. Historical data and consistency
-
-In this implementation, `SensorReadingResource` handles both fetching the reading history and appending new readings. After a successful reading POST, the parent sensor’s `currentValue` is updated immediately. This is important because it keeps the historical record and the current sensor state synchronized, so clients do not see stale or inconsistent values across different endpoints.
-
 ## Part 5 – Advanced Error Handling, Exception Mapping & Logging
 
 ### 1. Why HTTP 422 is often more accurate than 404
