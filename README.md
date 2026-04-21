@@ -86,7 +86,7 @@ mvn clean install
 The API currently runs locally at:
 
 ```text
-http://localhost:9095/api
+http://localhost:9095/api/v1
 ```
 
 ## Main Endpoints
@@ -118,19 +118,19 @@ http://localhost:9095/api
 ### 1. Get API discovery info
 
 ```bash
-curl http://localhost:9095/api
+curl http://localhost:9095/api/v1
 ```
 
 ### 2. Get all rooms
 
 ```bash
-curl http://localhost:9095/api/rooms
+curl http://localhost:9095/api/v1/rooms
 ```
 
 ### 3. Create a new room
 
 ```bash
-curl -X POST http://localhost:9095/api/rooms \
+curl -X POST http://localhost:9095/api/v1/rooms \
   -H "Content-Type: application/json" \
   -d "{\"id\":\"SCI-201\",\"name\":\"Science Lab\",\"capacity\":35,\"sensorIds\":[]}"
 ```
@@ -138,13 +138,13 @@ curl -X POST http://localhost:9095/api/rooms \
 ### 4. Get all sensors
 
 ```bash
-curl http://localhost:9095/api/sensors
+curl http://localhost:9095/api/v1/sensors
 ```
 
 ### 5. Create a new sensor
 
 ```bash
-curl -X POST http://localhost:9095/api/sensors \
+curl -X POST http://localhost:9095/api/v1/sensors \
   -H "Content-Type: application/json" \
   -d "{\"id\":\"CO2-001\",\"type\":\"CO2\",\"status\":\"ACTIVE\",\"currentValue\":420.5,\"roomId\":\"ENG-102\"}"
 ```
@@ -152,13 +152,13 @@ curl -X POST http://localhost:9095/api/sensors \
 ### 6. Filter sensors by type
 
 ```bash
-curl "http://localhost:9095/api/sensors?type=CO2"
+curl "http://localhost:9095/api/v1/sensors?type=CO2"
 ```
 
 ### 7. Add a reading to a sensor
 
 ```bash
-curl -X POST http://localhost:9095/api/sensors/CO2-001/readings \
+curl -X POST http://localhost:9095/api/v1/sensors/CO2-001/readings \
   -H "Content-Type: application/json" \
   -d "{\"id\":\"READ-001\",\"timestamp\":1711980000000,\"value\":430.2}"
 ```
@@ -166,7 +166,7 @@ curl -X POST http://localhost:9095/api/sensors/CO2-001/readings \
 ### 8. Get sensor reading history
 
 ```bash
-curl http://localhost:9095/api/sensors/CO2-001/readings
+curl http://localhost:9095/api/v1/sensors/CO2-001/readings
 ```
 
 ## Error Handling
